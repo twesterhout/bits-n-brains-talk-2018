@@ -1,0 +1,379 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>SR and NQS: An overview</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>SR and NQS<h2>
+          <h3>An overview</h3>
+        </section>
+
+        <section>
+          <h3>Stochastic Reconfiguration</h3>
+
+          <!-- <p><small>Power method performed stochastically.</small></p> -->
+        </section>
+
+        <section>
+          <dl>
+            <dt style="font-weight:normal;">Let:</dt>
+            <dd><ul>
+              <li>$H$ be the Hamiltonian;</li>
+              <li>$\{|x\rangle\}$ &mdash; a basis in our Hilber space;</li>
+              <li>$|0\rangle$ &mdash; the exact ground state.</li>
+            </ul></dd>
+          </dl>
+        </section>
+
+        <section>
+          <h3>Idea</h3>
+
+          <p><span class="fragment" data-fragment-index="2">$G = $</span>
+             <span class="fragment" data-fragment-index="1">$\Lambda - H$, where $\Lambda > 0$</span>
+             <span class="fragment" data-fragment-index="6"><b><em>large enough</em></b></span>
+          </p>
+          
+          <p><span class="fragment" data-fragment-index="3">
+            and $|\psi_G\rangle$ such that $\langle 0|\psi_G\rangle \neq 0$</span>
+          </p>
+
+          <p>
+            <span class="fragment none" data-fragment-index="4">
+              $\Rightarrow G^n|\psi_G\rangle$</span>
+            <span class="fragment none" data-fragment-index="5">
+              $\xrightarrow{n\to\infty} \langle 0|\psi_G\rangle |0\rangle$</span>
+          </p>
+        </section>
+
+        <section>
+          <img src="assets/Sad.png" style="background:inherit;border:none;height:80pt;">
+          <p><span>$\operatorname{dim} H = \mathcal{O}(e^N)$</span></p>
+        </section>
+
+        <section style="text-align: left;">
+          <div style="text-align: left;">
+            <p>We have $\{|\psi_n\rangle\}_{n\in\mathbb{N}}$<p>
+            <div style="text-indent: 8%;">
+              <p>with $|\psi_{n + 1}\rangle = G|\psi_n\rangle$
+                 and $|\psi_1\rangle = |\psi_G\rangle.$</p>
+            </div>
+          </div>
+          <p>
+            <span class="fragment">
+              What if $\||\psi_{n+1}\rangle - |\psi_n\rangle\|$ is <em>small</em>?
+            </span>
+          </p>
+          <div style="height: 5%;"></div>
+          <p style="text-align: center;">
+            <span class="fragment">
+              $\Rightarrow\psi_{n + 1}(x) = \psi_n(x)
+                + \sum_{k=1}^{K} \delta \alpha_k \; \partial_{\alpha_k}\!\psi_n(x)$
+            </span>
+          </p>
+        </section>
+
+        <section>
+          <div style="text-align:left;">
+            <p>$|\psi_{n + 1}\rangle = G|\psi_n\rangle$</p>
+            <p>
+              <div style="height:100px;">
+                <span class="fragment fade-out" data-fragment-index="1"
+                      style="position:absolute;">
+                  $|\psi_{n + 1}\rangle = |\psi_n\rangle
+                    + \sum_{k=1}^{K} \delta \alpha_k \; \mathcal{O}_k |\psi_n\rangle$
+                </span>
+                <span class="fragment fade-in" data-fragment-index="1"
+                      style="position:absolute;">
+                  $|\psi_{n + 1}\rangle = \sum_{k=0}^{K} \delta \alpha_k \; \mathcal{O}_k |\psi_n\rangle$
+                </span>
+              </div>
+            </p>
+            <div>
+              <p class="fragment" style="color: #f05050;float:left"><b>WRONG!</b></p>
+              <dl style="float:right;">
+                <dt style="font-weight:normal">with</dt>
+                <dd>
+                  $\langle x |\mathcal{O}_k = \partial_{\alpha_k} \log\psi_n(x)$
+                  <span class="fragment" data-fragment-index="1">and</span>
+                </dd>
+                <dd>
+                  <span class="fragment" data-fragment-index="1">
+                    $\langle x |\mathcal{O}_0 = 1$
+                  </span>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <p>
+            Consider projections onto<br>
+            $\operatorname{span}\{\mathcal{O}_k|\psi_n\rangle\}_{k\in\{0,\dots,K\}}$ &nbsp;instead.
+          </p>
+          <p>
+            <span class="fragment" data-fragment-index="1">
+              $\langle\psi_n|\mathcal{O}^\dagger_l$
+            </span><span>
+              $\!\!G|\psi_n\rangle =$
+            </span><span class="fragment" data-fragment-index="1">
+              $\langle\psi_n|\mathcal{O}^\dagger_l$
+            </span><span>
+              $\sum_{k=0}^{K} \delta \alpha_k \mathcal{O}_k |\psi_n\rangle$
+            </span>
+          </p>
+        </section>
+
+        <section>
+          <dl style="width:100%;">
+            <dt style="font-weight:normal;text-align:left;">$\Leftrightarrow s\delta\alpha = f$ with</dt>
+            <dd>$$ \begin{aligned}
+                      s_{ij} &amp;= \langle\mathcal{O}^\dagger_i\mathcal{O}_j \rangle, \\
+                      f_i &amp;= \langle\mathcal{O}^\dagger_i(\Lambda - H) \rangle,
+                   \end{aligned}
+                $$
+            </dd>
+            <dd style="text-align:right;">and $i,j \in \{0,\dots,K\}$.</dd>
+          </dl>
+        </section>
+
+        <section>
+          <dl style="width:100%;">
+            <dt style="font-weight:normal;text-align:left;">$\Leftrightarrow S\delta\alpha = -F$ with</dt>
+            <dd>$$ \begin{aligned}
+                      S_{ij} &amp;= \langle\mathcal{O}^\dagger_i\mathcal{O}_j \rangle
+                        - \langle\mathcal{O}^\dagger_i\rangle \langle\mathcal{O}_j\rangle, \\
+                      F_i &amp;= \langle\mathcal{O}^\dagger_i H\rangle
+                        - \langle\mathcal{O}^\dagger_i\rangle\langle H\rangle,
+                   \end{aligned}
+                $$
+            </dd>
+            <dd style="text-align:right;">and $i,j \in \{$<span style="color:#f05050;">$1$</span>$,\dots,K\}$.</dd>
+          </dl>
+        </section>
+
+        <section>
+          <section>
+            <dl style="width:100%;">
+              <dt style="font-weight:normal;text-align:left;">
+                $\alpha_k \leftarrow \alpha_k - \gamma \cdot S^{-1}F$ with
+              </dt>
+              <dd style="text-align:right;">
+                <br>
+                $1 / \gamma =
+                  2(\Lambda - \langle H\rangle - \sum_k \delta\alpha_k s_{k, 0})$
+              </dd>
+            </dl>
+          </section>
+
+          <section>
+            <div>
+              <div style="display:inline-block;">
+                <p>SGD</p>
+                <p>$\|\alpha_\mathsf{new} - \alpha_\mathsf{old}\|$</p>
+              </div>
+              <p style="display:inline-block;"><em>&nbsp; vs. &nbsp;</em></p>
+              <div style="display:inline-block">
+                <p>SR</p>
+                <p>$\||\psi_\mathsf{new}\rangle - |\psi_\mathsf{old}\rangle\|$</p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <h3>Restricted Boltzmann Machines</h3>
+          <img src="assets/RbmCarleoTroyer.png" style="border:0; background:inherit;width:500px;">
+        </section>
+
+        <section>
+          <section>
+            <ul>
+              <li>Basis: classical spin configurations.</li>
+              <li class="fragment">
+                $\alpha = \mathcal{W} = (a, b, w) 
+                  \in \mathbb{C}^N \times \mathbb{C}^M \times \mathcal{C}^{M\times N}$
+              </li>
+              <li class="fragment">
+                $\langle\sigma |\psi_\mathcal{W}\rangle =
+                  \operatorname{Tr}_{\{h\}} \exp(a^T\sigma + b^Th + h^Tw\sigma)$ 
+              </li>
+            <ul>
+          </section>
+
+          <section>
+            <div style="text-align:left;">
+              <p>
+                $
+                  \langle\sigma |\psi_\mathcal{W}\rangle =
+                  \exp(a^T\sigma) \prod_{i=j}^{M} 2\cosh(\underbrace{b_j + (w\sigma)_j}_{\theta_j})
+                $
+              </p>
+              <p class="fragment">
+                $\partial_{a_i}\log\psi_\mathcal{W}(\sigma) = 1/2 \sigma_i$,
+              </p>
+              <p class="fragment">
+                $\partial_{b_j}\log\psi_\mathcal{W}(\sigma) = 1/2 \tanh\theta_j$,
+              </p>
+              <p class="fragment">
+                $\partial_{w_{ji}}\log\psi_\mathcal{W}(\sigma) = 1/2 \tanh\theta_j\cdot\sigma_i$.
+              </p>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <p>
+            $$
+              \begin{aligned}
+                \langle A\rangle
+                  &amp;= \frac{\langle\psi| A |\psi\rangle}{\langle\psi|\psi\rangle} \\
+                  &amp;= \sum_\sigma \frac{\langle\psi|\sigma\rangle 
+                                           \langle\sigma| A |\psi\rangle
+                                          }{\langle\psi|\psi\rangle} \\
+                  &amp;= \sum_\sigma \frac{|\langle\sigma|\psi\rangle|^2} {\langle\psi|\psi\rangle}
+                                     \times
+                                     \frac{\langle\sigma| A |\psi\rangle}{\langle\sigma|\psi\rangle} \\
+                  &amp;= \sum_\sigma \mathbb{P}(\sigma)\times A_\mathsf{loc}(\sigma) \;.
+              \end{aligned}
+            $$
+          </p>
+        </section>
+
+        <section>
+          <p>
+            We can use an RBM as a variational ansatz<br>
+            and apply the SR procedure to obtain the<br>
+            (variational) ground state of the Hamiltonian <b>.</b>
+          </p>
+        </section>
+
+        <section>
+          <h2>Going Further</h2>
+          <p class="fragment">Excited states?</p>
+        </section>
+
+        <section>
+          <section>
+            <p>Let $H = \sum_n E_n|n\rangle$.</p>
+            <p class="fragment">
+              $\operatorname{Var}H = \langle H^2\rangle - \langle H\rangle^2 = 0
+                \iff |\psi\rangle = |n\rangle$.
+            </p>
+          </section>
+
+          <section>
+            <img src="assets/Sad.png" style="background:inherit;border:none;height:80pt;">
+            <p style="text-align:left;">small $\operatorname{Var} H$</p>
+            <p><em>does not imply</em></p>
+            <p style="text-align:right;">small $\| |\psi\rangle - |n\rangle \|$</p>
+          </section>
+
+          <section>
+            <p>
+              "Any" non-linear $f(\langle H\rangle, \langle H^2\rangle, \langle H^3\rangle,\dots)$
+              should suffice.
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p class="fragment" style="text-align:left" data-fragment-index="1">
+              Local density of states
+            <p>
+            <dl>
+              <dt class="fragment" style="font-weight:normal;" data-fragment-index="1">
+                $$n_\psi = -\frac{1}{\pi}\lim_{\varepsilon\to0+}
+                  \operatorname{Im}G_\psi(\varepsilon)$$
+                with
+              </dt>
+              <dd>
+              $$G_\psi(\varepsilon) = \sum_n \frac{\langle\psi|n\rangle\langle n|\psi\rangle}
+                                                  {\langle H\rangle - E_n + i\varepsilon}$$
+              </dd>
+            </dl>
+          </section>
+
+          <section>
+            <p>
+              $$
+                G_\psi(\varepsilon) = 
+                \frac{1}{z - a_1 -
+                  \frac{b_1^2}{z - a_2 -
+                    \frac{b_2^2}{z - a_3 - \dots}
+                  }
+                }\;,
+              $$
+            </p>
+            <p>
+              with $z = \langle H\rangle + i\varepsilon$ and $\{a_i\}$ and $\{b_{\,i}\}$
+              are given by the <em>Lanczos algorithm</em>.
+            </p>
+          </section>
+
+          <section>
+            <p>
+              Now express $\{a_i\}$ and $\{b_{\,i}\}$ in terms of statistical momenta of $H$<br>
+              <span class="fragment">
+                and optimise $n_\psi$ using SGD, SO, etc.
+              </span>
+            <p>
+
+          </section>
+        </section>
+
+        <section>
+          <h2>Thanks!</h2>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        transition: 'none',
+        // center: false,
+        controlsTutorial: false,
+        math: {
+            mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js',
+            // config: 'TeX-AMS_CHTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+        },
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/math/math.js', async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
